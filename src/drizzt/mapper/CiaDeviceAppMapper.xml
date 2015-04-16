@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="drizzt.mapper.CiaDeviceAppMapper" >
+  <resultMap id="BaseResultMap" type="drizzt.model.CiaDeviceApp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="imsi" property="imsi" jdbcType="VARCHAR" />
+    <result column="imei" property="imei" jdbcType="VARCHAR" />
+    <result column="mac" property="mac" jdbcType="VARCHAR" />
+    <result column="bluetooth" property="bluetooth" jdbcType="VARCHAR" />
+    <result column="androidId" property="androidId" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="phoneType" property="phoneType" jdbcType="VARCHAR" />
+    <result column="systemVersion" property="systemVersion" jdbcType="VARCHAR" />
+    <result column="appName" property="appName" jdbcType="VARCHAR" />
+    <result column="appVersion" property="appVersion" jdbcType="VARCHAR" />
+    <result column="packageName" property="packageName" jdbcType="VARCHAR" />
+    <result column="sdkVersion" property="sdkVersion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, imsi, imei, mac, bluetooth, androidId, brand, phoneType, systemVersion, appName, 
+    appVersion, packageName, sdkVersion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="drizzt.model.CiaDeviceAppExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cia_device_app
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cia_device_app
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cia_device_app
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="drizzt.model.CiaDeviceAppExample" >
+    delete from cia_device_app
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="drizzt.model.CiaDeviceApp" >
+    insert into cia_device_app (id, imsi, imei, 
+      mac, bluetooth, androidId, 
+      brand, phoneType, systemVersion, 
+      appName, appVersion, packageName, 
+      sdkVersion)
+    values (#{id,jdbcType=INTEGER}, #{imsi,jdbcType=VARCHAR}, #{imei,jdbcType=VARCHAR}, 
+      #{mac,jdbcType=VARCHAR}, #{bluetooth,jdbcType=VARCHAR}, #{androidId,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{phoneType,jdbcType=VARCHAR}, #{systemVersion,jdbcType=VARCHAR}, 
+      #{appName,jdbcType=VARCHAR}, #{appVersion,jdbcType=VARCHAR}, #{packageName,jdbcType=VARCHAR}, 
+      #{sdkVersion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="drizzt.model.CiaDeviceApp" >
+    insert into cia_device_app
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="imsi != null" >
+        imsi,
+      </if>
+      <if test="imei != null" >
+        imei,
+      </if>
+      <if test="mac != null" >
+        mac,
+      </if>
+      <if test="bluetooth != null" >
+        bluetooth,
+      </if>
+      <if test="androidId != null" >
+        androidId,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+      <if test="phoneType != null" >
+        phoneType,
+      </if>
+      <if test="systemVersion != null" >
+        systemVersion,
+      </if>
+      <if test="appName != null" >
+        appName,
+      </if>
+      <if test="appVersion != null" >
+        appVersion,
+      </if>
+      <if test="packageName != null" >
+        packageName,
+      </if>
+      <if test="sdkVersion != null" >
+        sdkVersion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imsi != null" >
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null" >
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="bluetooth != null" >
+        #{bluetooth,jdbcType=VARCHAR},
+      </if>
+      <if test="androidId != null" >
+        #{androidId,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null" >
+        #{phoneType,jdbcType=VARCHAR},
+      </if>
+      <if test="systemVersion != null" >
+        #{systemVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null" >
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null" >
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="sdkVersion != null" >
+        #{sdkVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="drizzt.model.CiaDeviceAppExample" resultType="java.lang.Integer" >
+    select count(*) from cia_device_app
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cia_device_app
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.imsi != null" >
+        imsi = #{record.imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imei != null" >
+        imei = #{record.imei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mac != null" >
+        mac = #{record.mac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bluetooth != null" >
+        bluetooth = #{record.bluetooth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.androidId != null" >
+        androidId = #{record.androidId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brand != null" >
+        brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneType != null" >
+        phoneType = #{record.phoneType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.systemVersion != null" >
+        systemVersion = #{record.systemVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appName != null" >
+        appName = #{record.appName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appVersion != null" >
+        appVersion = #{record.appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.packageName != null" >
+        packageName = #{record.packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sdkVersion != null" >
+        sdkVersion = #{record.sdkVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cia_device_app
+    set id = #{record.id,jdbcType=INTEGER},
+      imsi = #{record.imsi,jdbcType=VARCHAR},
+      imei = #{record.imei,jdbcType=VARCHAR},
+      mac = #{record.mac,jdbcType=VARCHAR},
+      bluetooth = #{record.bluetooth,jdbcType=VARCHAR},
+      androidId = #{record.androidId,jdbcType=VARCHAR},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      phoneType = #{record.phoneType,jdbcType=VARCHAR},
+      systemVersion = #{record.systemVersion,jdbcType=VARCHAR},
+      appName = #{record.appName,jdbcType=VARCHAR},
+      appVersion = #{record.appVersion,jdbcType=VARCHAR},
+      packageName = #{record.packageName,jdbcType=VARCHAR},
+      sdkVersion = #{record.sdkVersion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="drizzt.model.CiaDeviceApp" >
+    update cia_device_app
+    <set >
+      <if test="imsi != null" >
+        imsi = #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null" >
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        mac = #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="bluetooth != null" >
+        bluetooth = #{bluetooth,jdbcType=VARCHAR},
+      </if>
+      <if test="androidId != null" >
+        androidId = #{androidId,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null" >
+        phoneType = #{phoneType,jdbcType=VARCHAR},
+      </if>
+      <if test="systemVersion != null" >
+        systemVersion = #{systemVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null" >
+        appName = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        appVersion = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null" >
+        packageName = #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="sdkVersion != null" >
+        sdkVersion = #{sdkVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="drizzt.model.CiaDeviceApp" >
+    update cia_device_app
+    set imsi = #{imsi,jdbcType=VARCHAR},
+      imei = #{imei,jdbcType=VARCHAR},
+      mac = #{mac,jdbcType=VARCHAR},
+      bluetooth = #{bluetooth,jdbcType=VARCHAR},
+      androidId = #{androidId,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      phoneType = #{phoneType,jdbcType=VARCHAR},
+      systemVersion = #{systemVersion,jdbcType=VARCHAR},
+      appName = #{appName,jdbcType=VARCHAR},
+      appVersion = #{appVersion,jdbcType=VARCHAR},
+      packageName = #{packageName,jdbcType=VARCHAR},
+      sdkVersion = #{sdkVersion,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="drizzt.model.CiaDeviceAppExample" >
+    select 
+<if test="distinct" > 
+distinct 
+</if> 
+<include refid="Base_Column_List" /> 
+from cia_device_app
+<if test="_parameter != null" > 
+<include refid="Example_Where_Clause" /> 
+</if> 
+<if test="orderByClause != null" > 
+order by ${orderByClause} 
+</if> 
+limit #{pageIndex},#{pageSize} 
+
+  </select>
+</mapper>

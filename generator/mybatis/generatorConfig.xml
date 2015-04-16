@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<classPathEntry location="mysql-connector-java-5.1.12-bin.jar" />
+
+	<context id="cia" targetRuntime="MyBatis3">
+	
+		<!-- xml文件是否在原有基础上合并，默认是false -->
+		<property name="mergeable" value="false"></property>
+		
+		<plugin type="org.mybatis.generator.plugins.MysqlPagePlugin" />
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/cia" userId="root"
+			password="root">
+		</jdbcConnection>
+
+		<javaModelGenerator targetPackage="drizzt.model"
+			targetProject="../../src" />
+
+		<sqlMapGenerator targetPackage="drizzt.mapper"
+			targetProject="../../src" />
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="drizzt.mapper" targetProject="../../src" />
+
+		<table schema="" tableName="cia_auth">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="cia_developer">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="cia_device_app">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="" tableName="cia_auth_binding">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="" tableName="cia_auth_sn">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="" tableName="cia_free_limit">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="" tableName="cia_suggest">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="" tableName="cia_pay_sn">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="" tableName="cia_app">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="" tableName="cia_mobile">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+
+	</context>
+</generatorConfiguration>

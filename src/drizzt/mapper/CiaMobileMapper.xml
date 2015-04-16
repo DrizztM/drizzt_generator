@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="drizzt.mapper.CiaMobileMapper" >
+  <resultMap id="BaseResultMap" type="drizzt.model.CiaMobile" >
+    <id column="mobileNumber" property="mobileNumber" jdbcType="VARCHAR" />
+    <result column="mobileArea" property="mobileArea" jdbcType="VARCHAR" />
+    <result column="mobileType" property="mobileType" jdbcType="VARCHAR" />
+    <result column="areaCode" property="areaCode" jdbcType="VARCHAR" />
+    <result column="postCode" property="postCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mobileNumber, mobileArea, mobileType, areaCode, postCode
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="drizzt.model.CiaMobileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cia_mobile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cia_mobile
+    where mobileNumber = #{mobileNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cia_mobile
+    where mobileNumber = #{mobileNumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="drizzt.model.CiaMobileExample" >
+    delete from cia_mobile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="drizzt.model.CiaMobile" >
+    insert into cia_mobile (mobileNumber, mobileArea, mobileType, 
+      areaCode, postCode)
+    values (#{mobileNumber,jdbcType=VARCHAR}, #{mobileArea,jdbcType=VARCHAR}, #{mobileType,jdbcType=VARCHAR}, 
+      #{areaCode,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="drizzt.model.CiaMobile" >
+    insert into cia_mobile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mobileNumber != null" >
+        mobileNumber,
+      </if>
+      <if test="mobileArea != null" >
+        mobileArea,
+      </if>
+      <if test="mobileType != null" >
+        mobileType,
+      </if>
+      <if test="areaCode != null" >
+        areaCode,
+      </if>
+      <if test="postCode != null" >
+        postCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mobileNumber != null" >
+        #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileArea != null" >
+        #{mobileArea,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileType != null" >
+        #{mobileType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="drizzt.model.CiaMobileExample" resultType="java.lang.Integer" >
+    select count(*) from cia_mobile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cia_mobile
+    <set >
+      <if test="record.mobileNumber != null" >
+        mobileNumber = #{record.mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobileArea != null" >
+        mobileArea = #{record.mobileArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobileType != null" >
+        mobileType = #{record.mobileType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCode != null" >
+        areaCode = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postCode != null" >
+        postCode = #{record.postCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cia_mobile
+    set mobileNumber = #{record.mobileNumber,jdbcType=VARCHAR},
+      mobileArea = #{record.mobileArea,jdbcType=VARCHAR},
+      mobileType = #{record.mobileType,jdbcType=VARCHAR},
+      areaCode = #{record.areaCode,jdbcType=VARCHAR},
+      postCode = #{record.postCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="drizzt.model.CiaMobile" >
+    update cia_mobile
+    <set >
+      <if test="mobileArea != null" >
+        mobileArea = #{mobileArea,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileType != null" >
+        mobileType = #{mobileType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        areaCode = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        postCode = #{postCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mobileNumber = #{mobileNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="drizzt.model.CiaMobile" >
+    update cia_mobile
+    set mobileArea = #{mobileArea,jdbcType=VARCHAR},
+      mobileType = #{mobileType,jdbcType=VARCHAR},
+      areaCode = #{areaCode,jdbcType=VARCHAR},
+      postCode = #{postCode,jdbcType=VARCHAR}
+    where mobileNumber = #{mobileNumber,jdbcType=VARCHAR}
+  </update>
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="drizzt.model.CiaMobileExample" >
+    select 
+<if test="distinct" > 
+distinct 
+</if> 
+<include refid="Base_Column_List" /> 
+from cia_mobile
+<if test="_parameter != null" > 
+<include refid="Example_Where_Clause" /> 
+</if> 
+<if test="orderByClause != null" > 
+order by ${orderByClause} 
+</if> 
+limit #{pageIndex},#{pageSize} 
+
+  </select>
+</mapper>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="drizzt.mapper.CiaDeveloperMapper" >
+  <resultMap id="BaseResultMap" type="drizzt.model.CiaDeveloper" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="attribute" property="attribute" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="INTEGER" />
+    <result column="regDate" property="regDate" jdbcType="TIMESTAMP" />
+    <result column="authKey" property="authKey" jdbcType="VARCHAR" />
+    <result column="freeNum" property="freeNum" jdbcType="INTEGER" />
+    <result column="chargeNum" property="chargeNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, account, pwd, name, attribute, type, tel, email, balance, regDate, authKey, freeNum, 
+    chargeNum
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="drizzt.model.CiaDeveloperExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cia_developer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cia_developer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cia_developer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="drizzt.model.CiaDeveloperExample" >
+    delete from cia_developer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="drizzt.model.CiaDeveloper" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cia_developer (account, pwd, name, 
+      attribute, type, tel, 
+      email, balance, regDate, 
+      authKey, freeNum, chargeNum
+      )
+    values (#{account,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{attribute,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{regDate,jdbcType=TIMESTAMP}, 
+      #{authKey,jdbcType=VARCHAR}, #{freeNum,jdbcType=INTEGER}, #{chargeNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="drizzt.model.CiaDeveloper" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cia_developer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="attribute != null" >
+        attribute,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="regDate != null" >
+        regDate,
+      </if>
+      <if test="authKey != null" >
+        authKey,
+      </if>
+      <if test="freeNum != null" >
+        freeNum,
+      </if>
+      <if test="chargeNum != null" >
+        chargeNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute != null" >
+        #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null" >
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authKey != null" >
+        #{authKey,jdbcType=VARCHAR},
+      </if>
+      <if test="freeNum != null" >
+        #{freeNum,jdbcType=INTEGER},
+      </if>
+      <if test="chargeNum != null" >
+        #{chargeNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="drizzt.model.CiaDeveloperExample" resultType="java.lang.Integer" >
+    select count(*) from cia_developer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cia_developer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attribute != null" >
+        attribute = #{record.attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=INTEGER},
+      </if>
+      <if test="record.regDate != null" >
+        regDate = #{record.regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.authKey != null" >
+        authKey = #{record.authKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freeNum != null" >
+        freeNum = #{record.freeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargeNum != null" >
+        chargeNum = #{record.chargeNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cia_developer
+    set id = #{record.id,jdbcType=INTEGER},
+      account = #{record.account,jdbcType=VARCHAR},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      attribute = #{record.attribute,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=INTEGER},
+      regDate = #{record.regDate,jdbcType=TIMESTAMP},
+      authKey = #{record.authKey,jdbcType=VARCHAR},
+      freeNum = #{record.freeNum,jdbcType=INTEGER},
+      chargeNum = #{record.chargeNum,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="drizzt.model.CiaDeveloper" >
+    update cia_developer
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute != null" >
+        attribute = #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null" >
+        regDate = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authKey != null" >
+        authKey = #{authKey,jdbcType=VARCHAR},
+      </if>
+      <if test="freeNum != null" >
+        freeNum = #{freeNum,jdbcType=INTEGER},
+      </if>
+      <if test="chargeNum != null" >
+        chargeNum = #{chargeNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="drizzt.model.CiaDeveloper" >
+    update cia_developer
+    set account = #{account,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      attribute = #{attribute,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=INTEGER},
+      regDate = #{regDate,jdbcType=TIMESTAMP},
+      authKey = #{authKey,jdbcType=VARCHAR},
+      freeNum = #{freeNum,jdbcType=INTEGER},
+      chargeNum = #{chargeNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="drizzt.model.CiaDeveloperExample" >
+    select 
+<if test="distinct" > 
+distinct 
+</if> 
+<include refid="Base_Column_List" /> 
+from cia_developer
+<if test="_parameter != null" > 
+<include refid="Example_Where_Clause" /> 
+</if> 
+<if test="orderByClause != null" > 
+order by ${orderByClause} 
+</if> 
+limit #{pageIndex},#{pageSize} 
+
+  </select>
+</mapper>
