@@ -17,9 +17,9 @@ import drizzt.model.CiaFreeLimitExample;
 @Controller
 public class CiaFreeLimitController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaFreeLimit/list.do";
+	private String redirect = "redirect:/CiaFreeLimit/list.do";
 	
 	@Resource
 	private CiaFreeLimitService ciaFreeLimitService;
@@ -42,12 +42,12 @@ public class CiaFreeLimitController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaFreeLimits", ciaFreeLimits);
-		return "/ciaFreeLimit/list";
+		return "/CiaFreeLimit/list";
 	}
 	
 	@RequestMapping("/ciaFreeLimit/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaFreeLimit/add";
+		return "/CiaFreeLimit/add";
 	}
 
 	@RequestMapping("/ciaFreeLimit/add")
@@ -68,7 +68,7 @@ public class CiaFreeLimitController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaFreeLimit ciaFreeLimit = ciaFreeLimitService.getCiaFreeLimitById(id);
 		model.addAttribute("ciaFreeLimit", ciaFreeLimit);
-		return "/ciaFreeLimit/edit";
+		return "/CiaFreeLimit/edit";
 	}
 
 	@RequestMapping("/ciaFreeLimit/edit")
@@ -82,6 +82,6 @@ public class CiaFreeLimitController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaFreeLimit ciaFreeLimit = ciaFreeLimitService.getCiaFreeLimitById(id);
 		model.addAttribute("ciaFreeLimit", ciaFreeLimit);
-		return "/ciaFreeLimit/view";
+		return "/CiaFreeLimit/view";
 	}
 }

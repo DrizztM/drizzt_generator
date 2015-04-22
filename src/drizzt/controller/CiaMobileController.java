@@ -17,9 +17,9 @@ import drizzt.model.CiaMobileExample;
 @Controller
 public class CiaMobileController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaMobile/list.do";
+	private String redirect = "redirect:/CiaMobile/list.do";
 	
 	@Resource
 	private CiaMobileService ciaMobileService;
@@ -42,12 +42,12 @@ public class CiaMobileController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaMobiles", ciaMobiles);
-		return "/ciaMobile/list";
+		return "/CiaMobile/list";
 	}
 	
 	@RequestMapping("/ciaMobile/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaMobile/add";
+		return "/CiaMobile/add";
 	}
 
 	@RequestMapping("/ciaMobile/add")
@@ -68,7 +68,7 @@ public class CiaMobileController{
 			@RequestParam(value = "mobileNumber", required = false) String mobileNumber) {
 		CiaMobile ciaMobile = ciaMobileService.getCiaMobileByMobileNumber(mobileNumber);
 		model.addAttribute("ciaMobile", ciaMobile);
-		return "/ciaMobile/edit";
+		return "/CiaMobile/edit";
 	}
 
 	@RequestMapping("/ciaMobile/edit")
@@ -82,6 +82,6 @@ public class CiaMobileController{
 			@RequestParam(value = "mobileNumber", required = false) String mobileNumber) {
 		CiaMobile ciaMobile = ciaMobileService.getCiaMobileByMobileNumber(mobileNumber);
 		model.addAttribute("ciaMobile", ciaMobile);
-		return "/ciaMobile/view";
+		return "/CiaMobile/view";
 	}
 }

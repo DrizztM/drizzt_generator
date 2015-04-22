@@ -17,9 +17,9 @@ import drizzt.model.CiaAuthBindingExample;
 @Controller
 public class CiaAuthBindingController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaAuthBinding/list.do";
+	private String redirect = "redirect:/CiaAuthBinding/list.do";
 	
 	@Resource
 	private CiaAuthBindingService ciaAuthBindingService;
@@ -42,12 +42,12 @@ public class CiaAuthBindingController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaAuthBindings", ciaAuthBindings);
-		return "/ciaAuthBinding/list";
+		return "/CiaAuthBinding/list";
 	}
 	
 	@RequestMapping("/ciaAuthBinding/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaAuthBinding/add";
+		return "/CiaAuthBinding/add";
 	}
 
 	@RequestMapping("/ciaAuthBinding/add")
@@ -68,7 +68,7 @@ public class CiaAuthBindingController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaAuthBinding ciaAuthBinding = ciaAuthBindingService.getCiaAuthBindingById(id);
 		model.addAttribute("ciaAuthBinding", ciaAuthBinding);
-		return "/ciaAuthBinding/edit";
+		return "/CiaAuthBinding/edit";
 	}
 
 	@RequestMapping("/ciaAuthBinding/edit")
@@ -82,6 +82,6 @@ public class CiaAuthBindingController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaAuthBinding ciaAuthBinding = ciaAuthBindingService.getCiaAuthBindingById(id);
 		model.addAttribute("ciaAuthBinding", ciaAuthBinding);
-		return "/ciaAuthBinding/view";
+		return "/CiaAuthBinding/view";
 	}
 }

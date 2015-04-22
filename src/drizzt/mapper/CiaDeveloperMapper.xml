@@ -3,7 +3,6 @@
 <mapper namespace="drizzt.mapper.CiaDeveloperMapper" >
   <resultMap id="BaseResultMap" type="drizzt.model.CiaDeveloper" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="attribute" property="attribute" jdbcType="VARCHAR" />
@@ -75,8 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, account, pwd, name, attribute, type, tel, email, balance, regDate, authKey, freeNum, 
-    chargeNum
+    id, pwd, name, attribute, type, tel, email, balance, regDate, authKey, freeNum, chargeNum
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="drizzt.model.CiaDeveloperExample" >
     select
@@ -112,16 +110,14 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into cia_developer (account, pwd, name, 
-      attribute, type, tel, 
-      email, balance, regDate, 
-      authKey, freeNum, chargeNum
-      )
-    values (#{account,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{attribute,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, #{regDate,jdbcType=TIMESTAMP}, 
-      #{authKey,jdbcType=VARCHAR}, #{freeNum,jdbcType=INTEGER}, #{chargeNum,jdbcType=INTEGER}
-      )
+    insert into cia_developer (pwd, name, attribute, 
+      type, tel, email, balance, 
+      regDate, authKey, freeNum, 
+      chargeNum)
+    values (#{pwd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{attribute,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{balance,jdbcType=INTEGER}, 
+      #{regDate,jdbcType=TIMESTAMP}, #{authKey,jdbcType=VARCHAR}, #{freeNum,jdbcType=INTEGER}, 
+      #{chargeNum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="drizzt.model.CiaDeveloper" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -129,9 +125,6 @@
     </selectKey>
     insert into cia_developer
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="account != null" >
-        account,
-      </if>
       <if test="pwd != null" >
         pwd,
       </if>
@@ -167,9 +160,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="account != null" >
-        #{account,jdbcType=VARCHAR},
-      </if>
       <if test="pwd != null" >
         #{pwd,jdbcType=VARCHAR},
       </if>
@@ -217,9 +207,6 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.account != null" >
-        account = #{record.account,jdbcType=VARCHAR},
-      </if>
       <if test="record.pwd != null" >
         pwd = #{record.pwd,jdbcType=VARCHAR},
       </if>
@@ -261,7 +248,6 @@
   <update id="updateByExample" parameterType="map" >
     update cia_developer
     set id = #{record.id,jdbcType=INTEGER},
-      account = #{record.account,jdbcType=VARCHAR},
       pwd = #{record.pwd,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       attribute = #{record.attribute,jdbcType=VARCHAR},
@@ -280,9 +266,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="drizzt.model.CiaDeveloper" >
     update cia_developer
     <set >
-      <if test="account != null" >
-        account = #{account,jdbcType=VARCHAR},
-      </if>
       <if test="pwd != null" >
         pwd = #{pwd,jdbcType=VARCHAR},
       </if>
@@ -321,8 +304,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="drizzt.model.CiaDeveloper" >
     update cia_developer
-    set account = #{account,jdbcType=VARCHAR},
-      pwd = #{pwd,jdbcType=VARCHAR},
+    set pwd = #{pwd,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       attribute = #{attribute,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},

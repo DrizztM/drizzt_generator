@@ -17,9 +17,9 @@ import drizzt.model.CiaAuthExample;
 @Controller
 public class CiaAuthController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaAuth/list.do";
+	private String redirect = "redirect:/CiaAuth/list.do";
 	
 	@Resource
 	private CiaAuthService ciaAuthService;
@@ -42,12 +42,12 @@ public class CiaAuthController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaAuths", ciaAuths);
-		return "/ciaAuth/list";
+		return "/CiaAuth/list";
 	}
 	
 	@RequestMapping("/ciaAuth/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaAuth/add";
+		return "/CiaAuth/add";
 	}
 
 	@RequestMapping("/ciaAuth/add")
@@ -58,17 +58,17 @@ public class CiaAuthController{
 
 	@RequestMapping("/ciaAuth/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = true) Integer id) {
+			@RequestParam(value = "id", required = false) Integer id) {
 		ciaAuthService.delCiaAuthById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaAuth/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = true) Integer id) {
+			@RequestParam(value = "id", required = false) Integer id) {
 		CiaAuth ciaAuth = ciaAuthService.getCiaAuthById(id);
 		model.addAttribute("ciaAuth", ciaAuth);
-		return "/ciaAuth/edit";
+		return "/CiaAuth/edit";
 	}
 
 	@RequestMapping("/ciaAuth/edit")
@@ -79,9 +79,9 @@ public class CiaAuthController{
 
 	@RequestMapping("/ciaAuth/view")
 	public String toView(Model model,
-			@RequestParam(value = "id", required = true) Integer id) {
+			@RequestParam(value = "id", required = false) Integer id) {
 		CiaAuth ciaAuth = ciaAuthService.getCiaAuthById(id);
 		model.addAttribute("ciaAuth", ciaAuth);
-		return "/ciaAuth/view";
+		return "/CiaAuth/view";
 	}
 }

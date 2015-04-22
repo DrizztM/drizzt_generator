@@ -17,9 +17,9 @@ import drizzt.model.CiaAuthSnExample;
 @Controller
 public class CiaAuthSnController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaAuthSn/list.do";
+	private String redirect = "redirect:/CiaAuthSn/list.do";
 	
 	@Resource
 	private CiaAuthSnService ciaAuthSnService;
@@ -42,12 +42,12 @@ public class CiaAuthSnController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaAuthSns", ciaAuthSns);
-		return "/ciaAuthSn/list";
+		return "/CiaAuthSn/list";
 	}
 	
 	@RequestMapping("/ciaAuthSn/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaAuthSn/add";
+		return "/CiaAuthSn/add";
 	}
 
 	@RequestMapping("/ciaAuthSn/add")
@@ -68,7 +68,7 @@ public class CiaAuthSnController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaAuthSn ciaAuthSn = ciaAuthSnService.getCiaAuthSnById(id);
 		model.addAttribute("ciaAuthSn", ciaAuthSn);
-		return "/ciaAuthSn/edit";
+		return "/CiaAuthSn/edit";
 	}
 
 	@RequestMapping("/ciaAuthSn/edit")
@@ -82,6 +82,6 @@ public class CiaAuthSnController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaAuthSn ciaAuthSn = ciaAuthSnService.getCiaAuthSnById(id);
 		model.addAttribute("ciaAuthSn", ciaAuthSn);
-		return "/ciaAuthSn/view";
+		return "/CiaAuthSn/view";
 	}
 }

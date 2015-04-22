@@ -5,8 +5,6 @@ import java.util.Date;
 public class CiaDeveloper {
     private Integer id;
 
-    private String account;
-
     private String pwd;
 
     private String name;
@@ -35,14 +33,6 @@ public class CiaDeveloper {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
     }
 
     public String getPwd() {

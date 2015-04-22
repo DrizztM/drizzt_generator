@@ -17,9 +17,9 @@ import drizzt.model.CiaAppExample;
 @Controller
 public class CiaAppController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaApp/list.do";
+	private String redirect = "redirect:/CiaApp/list.do";
 	
 	@Resource
 	private CiaAppService ciaAppService;
@@ -42,12 +42,12 @@ public class CiaAppController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaApps", ciaApps);
-		return "/ciaApp/list";
+		return "/CiaApp/list";
 	}
 	
 	@RequestMapping("/ciaApp/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaApp/add";
+		return "/CiaApp/add";
 	}
 
 	@RequestMapping("/ciaApp/add")
@@ -68,7 +68,7 @@ public class CiaAppController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaApp ciaApp = ciaAppService.getCiaAppById(id);
 		model.addAttribute("ciaApp", ciaApp);
-		return "/ciaApp/edit";
+		return "/CiaApp/edit";
 	}
 
 	@RequestMapping("/ciaApp/edit")
@@ -82,6 +82,6 @@ public class CiaAppController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaApp ciaApp = ciaAppService.getCiaAppById(id);
 		model.addAttribute("ciaApp", ciaApp);
-		return "/ciaApp/view";
+		return "/CiaApp/view";
 	}
 }

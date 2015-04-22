@@ -17,9 +17,9 @@ import drizzt.model.CiaDeviceAppExample;
 @Controller
 public class CiaDeviceAppController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaDeviceApp/list.do";
+	private String redirect = "redirect:/CiaDeviceApp/list.do";
 	
 	@Resource
 	private CiaDeviceAppService ciaDeviceAppService;
@@ -42,12 +42,12 @@ public class CiaDeviceAppController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaDeviceApps", ciaDeviceApps);
-		return "/ciaDeviceApp/list";
+		return "/CiaDeviceApp/list";
 	}
 	
 	@RequestMapping("/ciaDeviceApp/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaDeviceApp/add";
+		return "/CiaDeviceApp/add";
 	}
 
 	@RequestMapping("/ciaDeviceApp/add")
@@ -68,7 +68,7 @@ public class CiaDeviceAppController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaDeviceApp ciaDeviceApp = ciaDeviceAppService.getCiaDeviceAppById(id);
 		model.addAttribute("ciaDeviceApp", ciaDeviceApp);
-		return "/ciaDeviceApp/edit";
+		return "/CiaDeviceApp/edit";
 	}
 
 	@RequestMapping("/ciaDeviceApp/edit")
@@ -82,6 +82,6 @@ public class CiaDeviceAppController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaDeviceApp ciaDeviceApp = ciaDeviceAppService.getCiaDeviceAppById(id);
 		model.addAttribute("ciaDeviceApp", ciaDeviceApp);
-		return "/ciaDeviceApp/view";
+		return "/CiaDeviceApp/view";
 	}
 }

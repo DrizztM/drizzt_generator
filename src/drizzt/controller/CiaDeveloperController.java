@@ -17,9 +17,9 @@ import drizzt.model.CiaDeveloperExample;
 @Controller
 public class CiaDeveloperController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaDeveloper/list.do";
+	private String redirect = "redirect:/CiaDeveloper/list.do";
 	
 	@Resource
 	private CiaDeveloperService ciaDeveloperService;
@@ -42,12 +42,12 @@ public class CiaDeveloperController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaDevelopers", ciaDevelopers);
-		return "/ciaDeveloper/list";
+		return "/CiaDeveloper/list";
 	}
 	
 	@RequestMapping("/ciaDeveloper/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaDeveloper/add";
+		return "/CiaDeveloper/add";
 	}
 
 	@RequestMapping("/ciaDeveloper/add")
@@ -68,7 +68,7 @@ public class CiaDeveloperController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaDeveloper ciaDeveloper = ciaDeveloperService.getCiaDeveloperById(id);
 		model.addAttribute("ciaDeveloper", ciaDeveloper);
-		return "/ciaDeveloper/edit";
+		return "/CiaDeveloper/edit";
 	}
 
 	@RequestMapping("/ciaDeveloper/edit")
@@ -82,6 +82,6 @@ public class CiaDeveloperController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaDeveloper ciaDeveloper = ciaDeveloperService.getCiaDeveloperById(id);
 		model.addAttribute("ciaDeveloper", ciaDeveloper);
-		return "/ciaDeveloper/view";
+		return "/CiaDeveloper/view";
 	}
 }

@@ -17,9 +17,9 @@ import drizzt.model.CiaSuggestExample;
 @Controller
 public class CiaSuggestController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaSuggest/list.do";
+	private String redirect = "redirect:/CiaSuggest/list.do";
 	
 	@Resource
 	private CiaSuggestService ciaSuggestService;
@@ -42,12 +42,12 @@ public class CiaSuggestController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaSuggests", ciaSuggests);
-		return "/ciaSuggest/list";
+		return "/CiaSuggest/list";
 	}
 	
 	@RequestMapping("/ciaSuggest/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaSuggest/add";
+		return "/CiaSuggest/add";
 	}
 
 	@RequestMapping("/ciaSuggest/add")
@@ -68,7 +68,7 @@ public class CiaSuggestController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaSuggest ciaSuggest = ciaSuggestService.getCiaSuggestById(id);
 		model.addAttribute("ciaSuggest", ciaSuggest);
-		return "/ciaSuggest/edit";
+		return "/CiaSuggest/edit";
 	}
 
 	@RequestMapping("/ciaSuggest/edit")
@@ -82,6 +82,6 @@ public class CiaSuggestController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaSuggest ciaSuggest = ciaSuggestService.getCiaSuggestById(id);
 		model.addAttribute("ciaSuggest", ciaSuggest);
-		return "/ciaSuggest/view";
+		return "/CiaSuggest/view";
 	}
 }

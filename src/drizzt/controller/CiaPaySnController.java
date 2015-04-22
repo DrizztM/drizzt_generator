@@ -17,9 +17,9 @@ import drizzt.model.CiaPaySnExample;
 @Controller
 public class CiaPaySnController{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/ciaPaySn/list.do";
+	private String redirect = "redirect:/CiaPaySn/list.do";
 	
 	@Resource
 	private CiaPaySnService ciaPaySnService;
@@ -42,12 +42,12 @@ public class CiaPaySnController{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("ciaPaySns", ciaPaySns);
-		return "/ciaPaySn/list";
+		return "/CiaPaySn/list";
 	}
 	
 	@RequestMapping("/ciaPaySn/toAdd")
 	public String toAdd(Model model) {
-		return "/ciaPaySn/add";
+		return "/CiaPaySn/add";
 	}
 
 	@RequestMapping("/ciaPaySn/add")
@@ -68,7 +68,7 @@ public class CiaPaySnController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaPaySn ciaPaySn = ciaPaySnService.getCiaPaySnById(id);
 		model.addAttribute("ciaPaySn", ciaPaySn);
-		return "/ciaPaySn/edit";
+		return "/CiaPaySn/edit";
 	}
 
 	@RequestMapping("/ciaPaySn/edit")
@@ -82,6 +82,6 @@ public class CiaPaySnController{
 			@RequestParam(value = "id", required = false) Integer id) {
 		CiaPaySn ciaPaySn = ciaPaySnService.getCiaPaySnById(id);
 		model.addAttribute("ciaPaySn", ciaPaySn);
-		return "/ciaPaySn/view";
+		return "/CiaPaySn/view";
 	}
 }
