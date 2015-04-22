@@ -22,9 +22,9 @@ import ${basepackage}.model.${className}Example;
 @Controller
 public class ${className}Controller{
 	
-	private int defaultPageSize=20;
+	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/${classNameLower}/list.do";
+	private String redirect = "redirect:/${className}/list.do";
 	
 	@Resource
 	private ${className}Service ${classNameLower}Service;
@@ -47,12 +47,12 @@ public class ${className}Controller{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("${classNameLower}s", ${classNameLower}s);
-		return "/${classNameLower}/list";
+		return "/${className}/list";
 	}
 	
 	@RequestMapping("/${classNameLower}/toAdd")
 	public String toAdd(Model model) {
-		return "/${classNameLower}/add";
+		return "/${className}/add";
 	}
 
 	@RequestMapping("/${classNameLower}/add")
@@ -73,7 +73,7 @@ public class ${className}Controller{
 			@RequestParam(value = "${pkColumnNameLower}", required = false) ${pkSimpleJavaType} ${pkColumnNameLower}) {
 		${className} ${classNameLower} = ${classNameLower}Service.get${className}By${pkColumnName}(${pkColumnNameLower});
 		model.addAttribute("${classNameLower}", ${classNameLower});
-		return "/${classNameLower}/edit";
+		return "/${className}/edit";
 	}
 
 	@RequestMapping("/${classNameLower}/edit")
@@ -87,6 +87,6 @@ public class ${className}Controller{
 			@RequestParam(value = "${pkColumnNameLower}", required = false) ${pkSimpleJavaType} ${pkColumnNameLower}) {
 		${className} ${classNameLower} = ${classNameLower}Service.get${className}By${pkColumnName}(${pkColumnNameLower});
 		model.addAttribute("${classNameLower}", ${classNameLower});
-		return "/${classNameLower}/view";
+		return "/${className}/view";
 	}
 }

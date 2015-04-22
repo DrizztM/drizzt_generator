@@ -24,13 +24,13 @@
 		</jdbcConnection>
 
 		<javaModelGenerator targetPackage="drizzt.model"
-			targetProject="../../src" />
+			targetProject="../../project" />
 
 		<sqlMapGenerator targetPackage="drizzt.mapper"
-			targetProject="../../src" />
+			targetProject="../../project" />
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="drizzt.mapper" targetProject="../../src" />
+			targetPackage="drizzt.mapper" targetProject="../../project" />
 
 		<table schema="" tableName="cia_auth">
 			<property name="useActualColumnNames" value="true" />

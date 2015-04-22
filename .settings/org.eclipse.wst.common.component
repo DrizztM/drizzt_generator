@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/generator"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/project"/>
         <property name="context-root" value="drizzt_generator"/>
         <property name="java-output-path" value="/drizzt_generator/build/classes"/>
     </wb-module>
