@@ -29,18 +29,33 @@ public class CiaDeveloperController{
 			Model model,
 			@RequestParam(value = "pageNum", required = false) Integer pageNum,
 			@RequestParam(value = "pageSize", required = false) Integer pageSize) {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
+		int maxPageNum = 0;
 		if (pageSize == null) {
 			pageSize = defaultPageSize;
 		}
-		CiaDeveloperExample ciaDeveloperExample = new CiaDeveloperExample((pageNum - 1) * pageSize,pageSize);
-		List<CiaDeveloper> ciaDevelopers = ciaDeveloperService.getPageCiaDeveloper(ciaDeveloperExample);
+		CiaDeveloperExample ciaDeveloperExample = new CiaDeveloperExample();
 		int totalCount = ciaDeveloperService.countCiaDeveloper(ciaDeveloperExample);
+		if(totalCount%pageSize == 0){
+			maxPageNum = totalCount/pageSize;
+		}else{
+			maxPageNum = totalCount/pageSize+1;
+		}
+		if (pageNum == null || pageNum < 1) {
+			pageNum = 1;
+		}else if(pageNum > maxPageNum){
+			pageNum = maxPageNum;
+		}
+		ciaDeveloperExample.setPageIndex((pageNum - 1) * pageSize);
+		ciaDeveloperExample.setPageSize(pageSize);
+		List<CiaDeveloper> ciaDevelopers = ciaDeveloperService.getPageCiaDeveloper(ciaDeveloperExample);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
+		if(totalCount%pageSize == 0){
+			model.addAttribute("maxPageNum", totalCount/pageSize);
+		}else{
+			model.addAttribute("maxPageNum", totalCount/pageSize+1);
+		}
 		model.addAttribute("ciaDevelopers", ciaDevelopers);
 		return "/CiaDeveloper/list";
 	}

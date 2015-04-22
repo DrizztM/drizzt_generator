@@ -29,18 +29,33 @@ public class CiaAppController{
 			Model model,
 			@RequestParam(value = "pageNum", required = false) Integer pageNum,
 			@RequestParam(value = "pageSize", required = false) Integer pageSize) {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
+		int maxPageNum = 0;
 		if (pageSize == null) {
 			pageSize = defaultPageSize;
 		}
-		CiaAppExample ciaAppExample = new CiaAppExample((pageNum - 1) * pageSize,pageSize);
-		List<CiaApp> ciaApps = ciaAppService.getPageCiaApp(ciaAppExample);
+		CiaAppExample ciaAppExample = new CiaAppExample();
 		int totalCount = ciaAppService.countCiaApp(ciaAppExample);
+		if(totalCount%pageSize == 0){
+			maxPageNum = totalCount/pageSize;
+		}else{
+			maxPageNum = totalCount/pageSize+1;
+		}
+		if (pageNum == null || pageNum < 1) {
+			pageNum = 1;
+		}else if(pageNum > maxPageNum){
+			pageNum = maxPageNum;
+		}
+		ciaAppExample.setPageIndex((pageNum - 1) * pageSize);
+		ciaAppExample.setPageSize(pageSize);
+		List<CiaApp> ciaApps = ciaAppService.getPageCiaApp(ciaAppExample);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
+		if(totalCount%pageSize == 0){
+			model.addAttribute("maxPageNum", totalCount/pageSize);
+		}else{
+			model.addAttribute("maxPageNum", totalCount/pageSize+1);
+		}
 		model.addAttribute("ciaApps", ciaApps);
 		return "/CiaApp/list";
 	}

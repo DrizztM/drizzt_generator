@@ -29,18 +29,33 @@ public class CiaDeviceAppController{
 			Model model,
 			@RequestParam(value = "pageNum", required = false) Integer pageNum,
 			@RequestParam(value = "pageSize", required = false) Integer pageSize) {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
+		int maxPageNum = 0;
 		if (pageSize == null) {
 			pageSize = defaultPageSize;
 		}
-		CiaDeviceAppExample ciaDeviceAppExample = new CiaDeviceAppExample((pageNum - 1) * pageSize,pageSize);
-		List<CiaDeviceApp> ciaDeviceApps = ciaDeviceAppService.getPageCiaDeviceApp(ciaDeviceAppExample);
+		CiaDeviceAppExample ciaDeviceAppExample = new CiaDeviceAppExample();
 		int totalCount = ciaDeviceAppService.countCiaDeviceApp(ciaDeviceAppExample);
+		if(totalCount%pageSize == 0){
+			maxPageNum = totalCount/pageSize;
+		}else{
+			maxPageNum = totalCount/pageSize+1;
+		}
+		if (pageNum == null || pageNum < 1) {
+			pageNum = 1;
+		}else if(pageNum > maxPageNum){
+			pageNum = maxPageNum;
+		}
+		ciaDeviceAppExample.setPageIndex((pageNum - 1) * pageSize);
+		ciaDeviceAppExample.setPageSize(pageSize);
+		List<CiaDeviceApp> ciaDeviceApps = ciaDeviceAppService.getPageCiaDeviceApp(ciaDeviceAppExample);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
+		if(totalCount%pageSize == 0){
+			model.addAttribute("maxPageNum", totalCount/pageSize);
+		}else{
+			model.addAttribute("maxPageNum", totalCount/pageSize+1);
+		}
 		model.addAttribute("ciaDeviceApps", ciaDeviceApps);
 		return "/CiaDeviceApp/list";
 	}

@@ -144,7 +144,11 @@
 											<thead>
 												<tr role="row">
 													<#list table.columns as column>
+														<#if column.htmlHidden>
+														<th class="sorting_disabled"></th>
+														<#else>
 														<th class="sorting_disabled">${column.constantName}</th>
+														</#if>
 													</#list>
 												</tr>
 											</thead>
@@ -153,7 +157,14 @@
 												<c:forEach items="<@jspEl classNameLower+"s" />" var="${classNameLower}">
 													<tr role="row" class="odd">
 														<#list table.columns as column>
+															<#if column.htmlHidden>
+															<td class="center"><label class="position-relative">
+															<input name="${column.columnNameLower}" type="radio" class="ace"> <span
+															class="lbl"></span>
+															</label></td>
+															<#else>
 															<td><@jspEl classNameLower+'.'+column.columnNameLower /></td>
+															</#if>
 														</#list>
 													</tr>
 												</c:forEach>
@@ -172,20 +183,20 @@
 												<div class="dataTables_paginate paging_simple_numbers"
 													id="sample-table-2_paginate">
 													<ul class="pagination">
-														<li class="paginate_button disabled"
+														<li class="paginate_button <c:if test="<@jspEl "pageNum==1" />">disabled</c:if>"
 															aria-controls="sample-table-2" tabindex="0"
 															id="sample-table-2_previous"><a href="#"
 															onclick="goPage(1)">首页</a></li>
-														<li class="paginate_button disabled"
+														<li class="paginate_button <c:if test="<@jspEl "pageNum==1" />">disabled</c:if>"
 															aria-controls="sample-table-2" tabindex="0"
 															id="sample-table-2_previous"><a href="#"
 															onclick="goPage(<@jspEl "pageNum" />-1)">上一页</a></li>
-														<li class="paginate_button" aria-controls="sample-table-2"
+														<li class="paginate_button <c:if test="<@jspEl "pageNum==maxPageNum" />">disabled</c:if>" aria-controls="sample-table-2"
 															tabindex="0" id="sample-table-2_previous"><a
 															href="#" onclick="goPage(<@jspEl "pageNum" />+1)">下一页</a></li>
-														<li class="paginate_button" aria-controls="sample-table-2"
+														<li class="paginate_button <c:if test="<@jspEl "pageNum==maxPageNum" />">disabled</c:if>" aria-controls="sample-table-2"
 															tabindex="0" id="sample-table-2_previous"><a
-															href="#">尾页</a></li>
+															href="#" onclick="goPage(<@jspEl "maxPageNum" />)">尾页</a></li>
 													</ul>
 												</div>
 											</div>

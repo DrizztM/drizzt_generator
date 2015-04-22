@@ -34,18 +34,33 @@ public class ${className}Controller{
 			Model model,
 			@RequestParam(value = "pageNum", required = false) Integer pageNum,
 			@RequestParam(value = "pageSize", required = false) Integer pageSize) {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
+		int maxPageNum = 0;
 		if (pageSize == null) {
 			pageSize = defaultPageSize;
 		}
-		${className}Example ${classNameLower}Example = new ${className}Example((pageNum - 1) * pageSize,pageSize);
-		List<${className}> ${classNameLower}s = ${classNameLower}Service.getPage${className}(${classNameLower}Example);
+		${className}Example ${classNameLower}Example = new ${className}Example();
 		int totalCount = ${classNameLower}Service.count${className}(${classNameLower}Example);
+		if(totalCount%pageSize == 0){
+			maxPageNum = totalCount/pageSize;
+		}else{
+			maxPageNum = totalCount/pageSize+1;
+		}
+		if (pageNum == null || pageNum < 1) {
+			pageNum = 1;
+		}else if(pageNum > maxPageNum){
+			pageNum = maxPageNum;
+		}
+		${classNameLower}Example.setPageIndex((pageNum - 1) * pageSize);
+		${classNameLower}Example.setPageSize(pageSize);
+		List<${className}> ${classNameLower}s = ${classNameLower}Service.getPage${className}(${classNameLower}Example);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
+		if(totalCount%pageSize == 0){
+			model.addAttribute("maxPageNum", totalCount/pageSize);
+		}else{
+			model.addAttribute("maxPageNum", totalCount/pageSize+1);
+		}
 		model.addAttribute("${classNameLower}s", ${classNameLower}s);
 		return "/${className}/list";
 	}

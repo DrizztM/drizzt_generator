@@ -140,7 +140,7 @@
 											aria-describedby="sample-table-2_info">
 											<thead>
 												<tr role="row">
-														<th class="sorting_disabled">ID</th>
+														<th class="sorting_disabled"></th>
 														<th class="sorting_disabled">APP_ID</th>
 														<th class="sorting_disabled">PN</th>
 														<th class="sorting_disabled">NUM</th>
@@ -150,7 +150,10 @@
 											<tbody>
 												<c:forEach items="${ciaFreeLimits}" var="ciaFreeLimit">
 													<tr role="row" class="odd">
-															<td>${ciaFreeLimit.id}</td>
+															<td class="center"><label class="position-relative">
+															<input name="id" type="radio" class="ace"> <span
+															class="lbl"></span>
+															</label></td>
 															<td>${ciaFreeLimit.appId}</td>
 															<td>${ciaFreeLimit.pn}</td>
 															<td>${ciaFreeLimit.num}</td>
@@ -171,20 +174,20 @@
 												<div class="dataTables_paginate paging_simple_numbers"
 													id="sample-table-2_paginate">
 													<ul class="pagination">
-														<li class="paginate_button disabled"
+														<li class="paginate_button <c:if test="${pageNum==1}">disabled</c:if>"
 															aria-controls="sample-table-2" tabindex="0"
 															id="sample-table-2_previous"><a href="#"
 															onclick="goPage(1)">首页</a></li>
-														<li class="paginate_button disabled"
+														<li class="paginate_button <c:if test="${pageNum==1}">disabled</c:if>"
 															aria-controls="sample-table-2" tabindex="0"
 															id="sample-table-2_previous"><a href="#"
 															onclick="goPage(${pageNum}-1)">上一页</a></li>
-														<li class="paginate_button" aria-controls="sample-table-2"
+														<li class="paginate_button <c:if test="${pageNum==maxPageNum}">disabled</c:if>" aria-controls="sample-table-2"
 															tabindex="0" id="sample-table-2_previous"><a
 															href="#" onclick="goPage(${pageNum}+1)">下一页</a></li>
-														<li class="paginate_button" aria-controls="sample-table-2"
+														<li class="paginate_button <c:if test="${pageNum==maxPageNum}">disabled</c:if>" aria-controls="sample-table-2"
 															tabindex="0" id="sample-table-2_previous"><a
-															href="#">尾页</a></li>
+															href="#" onclick="goPage(${maxPageNum})">尾页</a></li>
 													</ul>
 												</div>
 											</div>

@@ -29,18 +29,33 @@ public class CiaMobileController{
 			Model model,
 			@RequestParam(value = "pageNum", required = false) Integer pageNum,
 			@RequestParam(value = "pageSize", required = false) Integer pageSize) {
-		if (pageNum == null) {
-			pageNum = 1;
-		}
+		int maxPageNum = 0;
 		if (pageSize == null) {
 			pageSize = defaultPageSize;
 		}
-		CiaMobileExample ciaMobileExample = new CiaMobileExample((pageNum - 1) * pageSize,pageSize);
-		List<CiaMobile> ciaMobiles = ciaMobileService.getPageCiaMobile(ciaMobileExample);
+		CiaMobileExample ciaMobileExample = new CiaMobileExample();
 		int totalCount = ciaMobileService.countCiaMobile(ciaMobileExample);
+		if(totalCount%pageSize == 0){
+			maxPageNum = totalCount/pageSize;
+		}else{
+			maxPageNum = totalCount/pageSize+1;
+		}
+		if (pageNum == null || pageNum < 1) {
+			pageNum = 1;
+		}else if(pageNum > maxPageNum){
+			pageNum = maxPageNum;
+		}
+		ciaMobileExample.setPageIndex((pageNum - 1) * pageSize);
+		ciaMobileExample.setPageSize(pageSize);
+		List<CiaMobile> ciaMobiles = ciaMobileService.getPageCiaMobile(ciaMobileExample);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
+		if(totalCount%pageSize == 0){
+			model.addAttribute("maxPageNum", totalCount/pageSize);
+		}else{
+			model.addAttribute("maxPageNum", totalCount/pageSize+1);
+		}
 		model.addAttribute("ciaMobiles", ciaMobiles);
 		return "/CiaMobile/list";
 	}
