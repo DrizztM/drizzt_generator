@@ -1,0 +1,8 @@
+1.拷贝web/WEB-INF/lib下的所有文件
+2.拷贝web/ace下的所有文件
+3.src下建立项目目录，比如cn.ciaapp.context
+4.拷贝src/drizzt/context下的所有文件
+5.修改这些配置文件中的扫描路径和数据库连接方式
+6.修改generator/generator.xml中的<entry key="basepackage">drizzt</entry>和数据库连接方式
+7.修改generator/mybatis/generatorConfig.xml中的targetPackage="drizzt.model"和数据库连接方式
+8.运行GeneratorMain.java和build.xml，将生成文件拷贝到相应目录中
