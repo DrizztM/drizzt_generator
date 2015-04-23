@@ -23,7 +23,11 @@ public class IndexController {
 	public String index() {
 		return "/index";
 	}
-
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "/main";
+	}
 
 	public Color getRandColor(int fc, int bc) {
 		Random rand = new Random();

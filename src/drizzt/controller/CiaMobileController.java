@@ -19,7 +19,7 @@ public class CiaMobileController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaMobile/list.do";
+	private String redirect = "redirect:/ciaMobile/list.do";
 	
 	@Resource
 	private CiaMobileService ciaMobileService;
@@ -73,14 +73,14 @@ public class CiaMobileController{
 
 	@RequestMapping("/ciaMobile/del")
 	public String del(Model model,
-			@RequestParam(value = "mobileNumber", required = false) String mobileNumber) {
+			@RequestParam(value = "mobileNumber", required = true) String mobileNumber) {
 		ciaMobileService.delCiaMobileByMobileNumber(mobileNumber);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaMobile/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "mobileNumber", required = false) String mobileNumber) {
+			@RequestParam(value = "mobileNumber", required = true) String mobileNumber) {
 		CiaMobile ciaMobile = ciaMobileService.getCiaMobileByMobileNumber(mobileNumber);
 		model.addAttribute("ciaMobile", ciaMobile);
 		return "/CiaMobile/edit";
@@ -93,8 +93,8 @@ public class CiaMobileController{
 	}
 
 	@RequestMapping("/ciaMobile/view")
-	public String toView(Model model,
-			@RequestParam(value = "mobileNumber", required = false) String mobileNumber) {
+	public String view(Model model,
+			@RequestParam(value = "mobileNumber", required = true) String mobileNumber) {
 		CiaMobile ciaMobile = ciaMobileService.getCiaMobileByMobileNumber(mobileNumber);
 		model.addAttribute("ciaMobile", ciaMobile);
 		return "/CiaMobile/view";

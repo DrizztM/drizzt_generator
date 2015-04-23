@@ -19,7 +19,7 @@ public class CiaPaySnController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaPaySn/list.do";
+	private String redirect = "redirect:/ciaPaySn/list.do";
 	
 	@Resource
 	private CiaPaySnService ciaPaySnService;
@@ -73,14 +73,14 @@ public class CiaPaySnController{
 
 	@RequestMapping("/ciaPaySn/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		ciaPaySnService.delCiaPaySnById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaPaySn/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaPaySn ciaPaySn = ciaPaySnService.getCiaPaySnById(id);
 		model.addAttribute("ciaPaySn", ciaPaySn);
 		return "/CiaPaySn/edit";
@@ -93,8 +93,8 @@ public class CiaPaySnController{
 	}
 
 	@RequestMapping("/ciaPaySn/view")
-	public String toView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String view(Model model,
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaPaySn ciaPaySn = ciaPaySnService.getCiaPaySnById(id);
 		model.addAttribute("ciaPaySn", ciaPaySn);
 		return "/CiaPaySn/view";

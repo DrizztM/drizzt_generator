@@ -19,7 +19,7 @@ public class CiaDeviceAppController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaDeviceApp/list.do";
+	private String redirect = "redirect:/ciaDeviceApp/list.do";
 	
 	@Resource
 	private CiaDeviceAppService ciaDeviceAppService;
@@ -73,14 +73,14 @@ public class CiaDeviceAppController{
 
 	@RequestMapping("/ciaDeviceApp/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		ciaDeviceAppService.delCiaDeviceAppById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaDeviceApp/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaDeviceApp ciaDeviceApp = ciaDeviceAppService.getCiaDeviceAppById(id);
 		model.addAttribute("ciaDeviceApp", ciaDeviceApp);
 		return "/CiaDeviceApp/edit";
@@ -93,8 +93,8 @@ public class CiaDeviceAppController{
 	}
 
 	@RequestMapping("/ciaDeviceApp/view")
-	public String toView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String view(Model model,
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaDeviceApp ciaDeviceApp = ciaDeviceAppService.getCiaDeviceAppById(id);
 		model.addAttribute("ciaDeviceApp", ciaDeviceApp);
 		return "/CiaDeviceApp/view";

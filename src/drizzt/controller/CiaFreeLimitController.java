@@ -19,7 +19,7 @@ public class CiaFreeLimitController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaFreeLimit/list.do";
+	private String redirect = "redirect:/ciaFreeLimit/list.do";
 	
 	@Resource
 	private CiaFreeLimitService ciaFreeLimitService;
@@ -73,14 +73,14 @@ public class CiaFreeLimitController{
 
 	@RequestMapping("/ciaFreeLimit/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		ciaFreeLimitService.delCiaFreeLimitById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaFreeLimit/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaFreeLimit ciaFreeLimit = ciaFreeLimitService.getCiaFreeLimitById(id);
 		model.addAttribute("ciaFreeLimit", ciaFreeLimit);
 		return "/CiaFreeLimit/edit";
@@ -93,8 +93,8 @@ public class CiaFreeLimitController{
 	}
 
 	@RequestMapping("/ciaFreeLimit/view")
-	public String toView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String view(Model model,
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaFreeLimit ciaFreeLimit = ciaFreeLimitService.getCiaFreeLimitById(id);
 		model.addAttribute("ciaFreeLimit", ciaFreeLimit);
 		return "/CiaFreeLimit/view";

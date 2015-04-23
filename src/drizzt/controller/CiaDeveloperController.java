@@ -19,7 +19,7 @@ public class CiaDeveloperController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaDeveloper/list.do";
+	private String redirect = "redirect:/ciaDeveloper/list.do";
 	
 	@Resource
 	private CiaDeveloperService ciaDeveloperService;
@@ -73,14 +73,14 @@ public class CiaDeveloperController{
 
 	@RequestMapping("/ciaDeveloper/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		ciaDeveloperService.delCiaDeveloperById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaDeveloper/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaDeveloper ciaDeveloper = ciaDeveloperService.getCiaDeveloperById(id);
 		model.addAttribute("ciaDeveloper", ciaDeveloper);
 		return "/CiaDeveloper/edit";
@@ -93,8 +93,8 @@ public class CiaDeveloperController{
 	}
 
 	@RequestMapping("/ciaDeveloper/view")
-	public String toView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String view(Model model,
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaDeveloper ciaDeveloper = ciaDeveloperService.getCiaDeveloperById(id);
 		model.addAttribute("ciaDeveloper", ciaDeveloper);
 		return "/CiaDeveloper/view";

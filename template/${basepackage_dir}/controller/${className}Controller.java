@@ -24,7 +24,7 @@ public class ${className}Controller{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/${className}/list.do";
+	private String redirect = "redirect:/${classNameLower}/list.do";
 	
 	@Resource
 	private ${className}Service ${classNameLower}Service;
@@ -78,14 +78,14 @@ public class ${className}Controller{
 
 	@RequestMapping("/${classNameLower}/del")
 	public String del(Model model,
-			@RequestParam(value = "${pkColumnNameLower}", required = false) ${pkSimpleJavaType} ${pkColumnNameLower}) {
+			@RequestParam(value = "${pkColumnNameLower}", required = true) ${pkSimpleJavaType} ${pkColumnNameLower}) {
 		${classNameLower}Service.del${className}By${pkColumnName}(${pkColumnNameLower});
 		return redirect;
 	}
 
 	@RequestMapping("/${classNameLower}/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "${pkColumnNameLower}", required = false) ${pkSimpleJavaType} ${pkColumnNameLower}) {
+			@RequestParam(value = "${pkColumnNameLower}", required = true) ${pkSimpleJavaType} ${pkColumnNameLower}) {
 		${className} ${classNameLower} = ${classNameLower}Service.get${className}By${pkColumnName}(${pkColumnNameLower});
 		model.addAttribute("${classNameLower}", ${classNameLower});
 		return "/${className}/edit";
@@ -98,8 +98,8 @@ public class ${className}Controller{
 	}
 
 	@RequestMapping("/${classNameLower}/view")
-	public String toView(Model model,
-			@RequestParam(value = "${pkColumnNameLower}", required = false) ${pkSimpleJavaType} ${pkColumnNameLower}) {
+	public String view(Model model,
+			@RequestParam(value = "${pkColumnNameLower}", required = true) ${pkSimpleJavaType} ${pkColumnNameLower}) {
 		${className} ${classNameLower} = ${classNameLower}Service.get${className}By${pkColumnName}(${pkColumnNameLower});
 		model.addAttribute("${classNameLower}", ${classNameLower});
 		return "/${className}/view";

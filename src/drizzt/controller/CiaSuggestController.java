@@ -19,7 +19,7 @@ public class CiaSuggestController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaSuggest/list.do";
+	private String redirect = "redirect:/ciaSuggest/list.do";
 	
 	@Resource
 	private CiaSuggestService ciaSuggestService;
@@ -73,14 +73,14 @@ public class CiaSuggestController{
 
 	@RequestMapping("/ciaSuggest/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		ciaSuggestService.delCiaSuggestById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaSuggest/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaSuggest ciaSuggest = ciaSuggestService.getCiaSuggestById(id);
 		model.addAttribute("ciaSuggest", ciaSuggest);
 		return "/CiaSuggest/edit";
@@ -93,8 +93,8 @@ public class CiaSuggestController{
 	}
 
 	@RequestMapping("/ciaSuggest/view")
-	public String toView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String view(Model model,
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaSuggest ciaSuggest = ciaSuggestService.getCiaSuggestById(id);
 		model.addAttribute("ciaSuggest", ciaSuggest);
 		return "/CiaSuggest/view";

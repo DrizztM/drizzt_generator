@@ -81,13 +81,11 @@
 							<div class="table-header">Results for "Latest Registered
 								Domains"</div>
 
-							<!-- <div class="table-responsive"> -->
-
 							<!-- <div class="dataTables_borderWrap"> -->
 							<div>
 								<div id="sample-table-2_wrapper"
 									class="dataTables_wrapper form-inline no-footer">
-									<form action="<%=request.getContextPath()%>/ciaAuth/list.do"
+									<form action="<%=request.getContextPath()%>/ciaDeviceApp/list.do"
 										method="post" id="drizzt-table">
 										<div class="row">
 											<div class="col-xs-6">
@@ -99,28 +97,28 @@
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="add_grid-table" data-original-title="Add new row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary">新增</button>
+																	<button class="btn btn-sm btn-primary" onclick="goOperate('add')">新增</button>
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="edit_grid-table"
 																data-original-title="Edit selected row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary">编辑</button>
+																	<button class="btn btn-sm btn-primary" onclick="goOperate('edit')">编辑</button>
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="view_grid-table"
 																data-original-title="View selected row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary">删除</button>
+																	<button class="btn btn-sm btn-primary" onclick="goOperate('del')">删除</button>
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="del_grid-table"
 																data-original-title="Delete selected row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary">查看</button>
+																	<button class="btn btn-sm btn-primary" onclick="goOperate('view')">查看</button>
 																</div></td>
 														</tr>
 													</tbody>
@@ -160,7 +158,7 @@
 												<c:forEach items="${ciaDeviceApps}" var="ciaDeviceApp">
 													<tr role="row" class="odd">
 															<td class="center"><label class="position-relative">
-															<input name="id" type="radio" class="ace"> <span
+															<input id="id" name="id" type="radio" value="${ciaDeviceApp.id}" class="ace"> <span
 															class="lbl"></span>
 															</label></td>
 															<td>${ciaDeviceApp.imsi}</td>
@@ -245,9 +243,7 @@
 <![endif]-->
 <script type="text/javascript">
 	if ('ontouchstart' in document.documentElement)
-		document
-				.write("<script src='<%=request.getContextPath()%>/ace/assets/js/jquery.mobile.custom.min.js'>"
-						+ "<"+"/script>");
+		document.write("<script src='<%=request.getContextPath()%>/ace/assets/js/jquery.mobile.custom.min.js'>"+ "<"+"/script>");
 </script>
 
 <script type="text/javascript">
@@ -257,44 +253,54 @@
 		}
 		$("#drizzt-table").submit();
 	}
+	function goOperate(operate){
+		if(operate=="add"){
+			$("#drizzt-table").attr("action", "<%=request.getContextPath()%>/ciaDeviceApp/toAdd.do");
+			$("#drizzt-table").submit();
+		}
+		if(operate=="edit"){
+			var val=$("#id:checked").val();
+			if(val==null){
+                alert("请选择一条数据");
+                return false;
+            }else{
+				$("#drizzt-table").attr("action", "<%=request.getContextPath()%>/ciaDeviceApp/toEdit.do");
+				$("#drizzt-table").submit();
+            }
+		}
+		if(operate=="del"){
+			var val=$("#id:checked").val();
+			if(val==null){
+                alert("请选择一条数据");
+                return false;
+            }else{
+            	if(confirm("确定要删除该信息吗？删除将不能恢复！")){
+            		$("#drizzt-table").attr("action", "<%=request.getContextPath()%>/ciaDeviceApp/del.do");
+     				$("#drizzt-table").submit();
+            	}else{
+            		return false;
+            	}
+            }
+		}
+		if(operate=="view"){
+			var val=$("#id:checked").val();
+			if(val==null){
+                alert("请选择一条数据");
+                return false;
+            }else{
+				$("#drizzt-table").attr("action", "<%=request.getContextPath()%>/ciaDeviceApp/view.do");
+				$("#drizzt-table").submit();
+            }
+		}
+	}
 </script>
 <script
 	src="<%=request.getContextPath()%>/ace/assets/js/bootstrap.min.js"></script>
-
-<!-- page specific plugin scripts -->
-<script
-	src="<%=request.getContextPath()%>/ace/assets/js/jquery.dataTables.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/ace/assets/js/jquery.dataTables.bootstrap.js"></script>
-
-<!-- ace scripts -->
-<script
-	src="<%=request.getContextPath()%>/ace/assets/js/ace-elements.min.js"></script>
-<script src="<%=request.getContextPath()%>/ace/assets/js/ace.min.js"></script>
-
 
 <!-- the following scripts are used in demo only for onpage help and you don't need them -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/ace/assets/css/ace.onpage-help.css" />
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/ace/docs/assets/js/themes/sunburst.css" />
-
-<script type="text/javascript">
-	ace.vars['base'] = '..';
-</script>
-<script
-	src="<%=request.getContextPath()%>/ace/assets/js/ace/elements.onpage-help.js"></script>
-<script
-	src="<%=request.getContextPath()%>/ace/assets/js/ace/ace.onpage-help.js"></script>
-<script
-	src="<%=request.getContextPath()%>/ace/docs/assets/js/rainbow.js"></script>
-<script
-	src="<%=request.getContextPath()%>/ace/docs/assets/js/language/generic.js"></script>
-<script
-	src="<%=request.getContextPath()%>/ace/docs/assets/js/language/html.js"></script>
-<script
-	src="<%=request.getContextPath()%>/ace/docs/assets/js/language/css.js"></script>
-<script
-	src="<%=request.getContextPath()%>/ace/docs/assets/js/language/javascript.js"></script>
 
 </html>

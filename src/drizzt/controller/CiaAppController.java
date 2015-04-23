@@ -19,7 +19,7 @@ public class CiaAppController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaApp/list.do";
+	private String redirect = "redirect:/ciaApp/list.do";
 	
 	@Resource
 	private CiaAppService ciaAppService;
@@ -73,14 +73,14 @@ public class CiaAppController{
 
 	@RequestMapping("/ciaApp/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		ciaAppService.delCiaAppById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaApp/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaApp ciaApp = ciaAppService.getCiaAppById(id);
 		model.addAttribute("ciaApp", ciaApp);
 		return "/CiaApp/edit";
@@ -93,8 +93,8 @@ public class CiaAppController{
 	}
 
 	@RequestMapping("/ciaApp/view")
-	public String toView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String view(Model model,
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaApp ciaApp = ciaAppService.getCiaAppById(id);
 		model.addAttribute("ciaApp", ciaApp);
 		return "/CiaApp/view";

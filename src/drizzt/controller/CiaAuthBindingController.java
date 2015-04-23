@@ -19,7 +19,7 @@ public class CiaAuthBindingController{
 	
 	private int defaultPageSize=10;
 	
-	private String redirect = "redirect:/CiaAuthBinding/list.do";
+	private String redirect = "redirect:/ciaAuthBinding/list.do";
 	
 	@Resource
 	private CiaAuthBindingService ciaAuthBindingService;
@@ -73,14 +73,14 @@ public class CiaAuthBindingController{
 
 	@RequestMapping("/ciaAuthBinding/del")
 	public String del(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		ciaAuthBindingService.delCiaAuthBindingById(id);
 		return redirect;
 	}
 
 	@RequestMapping("/ciaAuthBinding/toEdit")
 	public String toEdit(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaAuthBinding ciaAuthBinding = ciaAuthBindingService.getCiaAuthBindingById(id);
 		model.addAttribute("ciaAuthBinding", ciaAuthBinding);
 		return "/CiaAuthBinding/edit";
@@ -93,8 +93,8 @@ public class CiaAuthBindingController{
 	}
 
 	@RequestMapping("/ciaAuthBinding/view")
-	public String toView(Model model,
-			@RequestParam(value = "id", required = false) Integer id) {
+	public String view(Model model,
+			@RequestParam(value = "id", required = true) Integer id) {
 		CiaAuthBinding ciaAuthBinding = ciaAuthBindingService.getCiaAuthBindingById(id);
 		model.addAttribute("ciaAuthBinding", ciaAuthBinding);
 		return "/CiaAuthBinding/view";
