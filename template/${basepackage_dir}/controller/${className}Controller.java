@@ -47,8 +47,10 @@ public class ${className}Controller{
 		}
 		if (pageNum == null || pageNum < 1) {
 			pageNum = 1;
-		}else if(pageNum > maxPageNum){
-			pageNum = maxPageNum;
+		}else {
+			if(maxPageNum > 0 && pageNum > maxPageNum) {
+				pageNum = maxPageNum;
+			}
 		}
 		${classNameLower}Example.setPageIndex((pageNum - 1) * pageSize);
 		${classNameLower}Example.setPageSize(pageSize);
