@@ -100,28 +100,28 @@
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="add_grid-table" data-original-title="Add new row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary" onclick="goOperate('add')">新增</button>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('add')">新增</input>
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="edit_grid-table"
 																data-original-title="Edit selected row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary" onclick="goOperate('edit')">编辑</button>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('edit')">编辑</input>
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="view_grid-table"
 																data-original-title="View selected row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary" onclick="goOperate('del')">删除</button>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('del')">删除</input>
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="del_grid-table"
 																data-original-title="Delete selected row"><div
 																	class="ui-pg-div">
-																	<button class="btn btn-sm btn-primary" onclick="goOperate('view')">查看</button>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('view')">查看</input>
 																</div></td>
 														</tr>
 													</tbody>
@@ -175,7 +175,7 @@
 													role="status" aria-live="polite">
 													共 <@jspEl "totalCount" /> 条数据，当前第<input type="text" id="pageNum"
 														name="pageNum" style="width: 40px;" value="<@jspEl "pageNum" />" />页&nbsp;&nbsp;
-													<button class="btn btn-sm btn-primary" onclick="goPage(0)">跳转</button>
+													<input type="button" class="btn btn-sm btn-primary" onclick="goPage(0)">跳转</input>
 												</div>
 											</div>
 											<div class="col-xs-6">
@@ -243,8 +243,15 @@
 		if(pageNum!=0){
 			$("#pageNum").val(pageNum);
 		}
+		var myreg=/^[0-9]*$/;
+		if(!myreg.test($("#pageNum").val())){
+			alert("请输入有效数字！");
+			$("#pageNum").val(1);
+			return false;
+		}
 		$("#drizzt-table").submit();
 	}
+	
 	function goOperate(operate){
 		if(operate=="add"){
 			$("#drizzt-table").attr("action", "<%=request.getContextPath()%>/${classNameLower}/toAdd.do");
