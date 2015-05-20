@@ -1,4 +1,4 @@
-1.拷贝web/WEB-INF/lib下的所有文件 
+1.拷贝web/WEB-INF/lib下的所有文件
 2.拷贝web/ace下的所有文件
 3.src下建立项目目录，比如cn.ciaapp.context
 4.拷贝src/drizzt/context下的所有文件
