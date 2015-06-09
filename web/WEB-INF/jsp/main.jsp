@@ -283,7 +283,7 @@
 		<!-- /section:basics/sidebar -->
 		<div class="main-content">
 			<div class="page-content"
-				style="margin: 1px; padding: 0px; height: 535px;">
+				style="margin: 1px; padding: 0px; height: 650px;">
 				<iframe id="iframe" name="iframe" frameborder="0" scrolling="yes"
 					src="index.do" width="100%" height="100%"></iframe>
 			</div>
