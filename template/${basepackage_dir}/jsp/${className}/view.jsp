@@ -118,9 +118,7 @@
 						</#list>						
 						<div class="clearfix form-actions">
 							<div class="col-md-offset-3 col-md-9">
-								<input type="button" class="btn btn-info" type="button" onclick="location.href='<%=request.getContextPath()%>/${classNameLower}/list.do'">
-									<i class="ace-icon fa fa-check bigger-110"></i> 返回
-								</input>
+								<input type="button" class="btn btn-info" type="button" onclick="location.href='<%=request.getContextPath()%>/${classNameLower}/list.do'" value="返回" />
 							</div>
 						</div>
 					</form>

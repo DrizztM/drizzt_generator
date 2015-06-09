@@ -100,28 +100,28 @@
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="add_grid-table" data-original-title="Add new row"><div
 																	class="ui-pg-div">
-																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('add')">新增</input>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('add')" value="新增" />
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="edit_grid-table"
 																data-original-title="Edit selected row"><div
 																	class="ui-pg-div">
-																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('edit')">编辑</input>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('edit')" value="编辑" />
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="view_grid-table"
 																data-original-title="View selected row"><div
 																	class="ui-pg-div">
-																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('del')">删除</input>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('del')"  value="删除" />
 																</div></td>
 															<td>&nbsp;&nbsp;</td>
 															<td class="ui-pg-button ui-corner-all" title=""
 																id="del_grid-table"
 																data-original-title="Delete selected row"><div
 																	class="ui-pg-div">
-																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('view')">查看</input>
+																	<input type="button" class="btn btn-sm btn-primary" onclick="goOperate('view')" value="查看" />
 																</div></td>
 														</tr>
 													</tbody>
@@ -158,7 +158,7 @@
 														<#list table.columns as column>
 															<#if column.htmlHidden>
 															<td class="center"><label class="position-relative">
-															<input id="${column.columnNameLower}" name="${column.columnNameLower}" type="radio" value="<@jspEl classNameLower+'.'+column.columnNameLower />" class="ace"> <span
+															<input id="${column.columnNameLower}" name="${column.columnNameLower}" type="radio" value="<@jspEl classNameLower+'.'+column.columnNameLower />" class="ace" /> <span
 															class="lbl"></span>
 															</label></td>
 															<#else>

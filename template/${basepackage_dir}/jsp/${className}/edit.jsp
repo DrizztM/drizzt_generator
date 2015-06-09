@@ -123,14 +123,10 @@
 						</#list>						
 						<div class="clearfix form-actions">
 							<div class="col-md-offset-3 col-md-9">
-								<input type="button" class="btn btn-info" type="submit">
-									<i class="ace-icon fa fa-check bigger-110"></i> 提交
-								</input>
+								<input type="button" class="btn btn-info" type="submit" value="提交" />
 
 								&nbsp; &nbsp; &nbsp;
-								<input type="button" class="btn btn-info" type="button" onclick="location.href='<%=request.getContextPath()%>/${classNameLower}/list.do'">
-									<i class="ace-icon fa fa-check bigger-110"></i> 返回
-								</input>
+								<input type="button" class="btn btn-info" type="button" onclick="location.href='<%=request.getContextPath()%>/${classNameLower}/list.do'" value="返回" />
 							</div>
 						</div>
 					</form>
